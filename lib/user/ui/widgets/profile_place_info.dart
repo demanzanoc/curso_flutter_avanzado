@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../../../place.dart';
-import '../../../floating_action_button_green.dart';
+import '../../../place/model/place.dart';
+import '../../../widgets/floating_action_button_green.dart';
 
 class ProfilePlaceInfo extends StatelessWidget {
 
