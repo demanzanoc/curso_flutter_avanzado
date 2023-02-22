@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:generic_bloc_provider/generic_bloc_provider.dart';
 import 'package:platzi_trips_app/user/bloc/bloc_user.dart';
+import 'package:platzi_trips_app/user/ui/screens/sign_in_screen.dart';
 import 'platzi_trips.dart';
 import 'platzi_trips_cupertino.dart';
 
@@ -16,7 +17,7 @@ class MyApp extends StatelessWidget {
     return BlocProvider(
         child: MaterialApp(
           title: 'Flutter Demo',
-          home: PlatziTripsCupertino(),
+          home: SignInScreen(),
         ),
         bloc: UserBloc(),
     );
