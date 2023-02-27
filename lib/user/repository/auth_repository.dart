@@ -6,4 +6,5 @@ class AuthRepository {
 
   Future<User> signInWithFirebase() => _firebaseAuth.signInWithGoogle();
 
+  signOut() => _firebaseAuth.signOut();
 }

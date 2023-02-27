@@ -6,9 +6,12 @@ class UserBloc implements Bloc {
   final _auth_repository = AuthRepository();
 
   Stream<User> streamFirebase = FirebaseAuth.instance.authStateChanges();
+
   Stream<User> get authStatus => streamFirebase;
 
   Future<User> signIn() => _auth_repository.signInWithFirebase();
+
+  signOut() => _auth_repository.signOut();
 
   @override
   void dispose() {
