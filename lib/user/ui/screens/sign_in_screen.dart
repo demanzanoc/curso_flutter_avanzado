@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:generic_bloc_provider/generic_bloc_provider.dart';
 import 'package:platzi_trips_app/platzi_trips_cupertino.dart';
+import 'package:platzi_trips_app/user/model/user_model.dart';
 import 'package:platzi_trips_app/widgets/button_green.dart';
 import 'package:platzi_trips_app/widgets/gradient_back.dart';
 import '../../bloc/bloc_user.dart';
@@ -24,13 +25,12 @@ class _SignInScreen extends State<SignInScreen> {
   Widget _handleCurrentSession() => StreamBuilder(
       stream: userBloc.authStatus,
       builder: (BuildContext context, AsyncSnapshot snapShot) {
-        if(!snapShot.hasData || snapShot.hasError) {
+        if (!snapShot.hasData || snapShot.hasError) {
           return signInGoogleUi();
         } else {
           return PlatziTripsCupertino();
         }
-      }
-  );
+      });
 
   Widget signInGoogleUi() {
     return Scaffold(
@@ -53,7 +53,19 @@ class _SignInScreen extends State<SignInScreen> {
               ButtonGreen(
                 text: "Sign in with Google",
                 onPressed: () {
-                  userBloc.signIn().then((user) => print("El usuario es: ${user.displayName}"));
+                  userBloc.signOut();
+                  userBloc.signIn().then((user) {
+                    userBloc.updateUserData(
+                      UserModel(
+                        user.uid,
+                        user.displayName,
+                        user.email,
+                        user.photoURL,
+                        List.empty(),
+                        List.empty(),
+                      ),
+                    );
+                  });
                 },
                 width: 300.0,
                 height: 50.0,
