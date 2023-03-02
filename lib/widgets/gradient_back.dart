@@ -22,12 +22,14 @@ class GradientBack extends StatelessWidget {
               begin: FractionalOffset(0.2, 0.0),
               end: FractionalOffset(1.0, 0.6),
               stops: [0.0, 0.6],
-              tileMode: TileMode.clamp)),
+              tileMode: TileMode.clamp,
+          ),
+      ),
       child: FittedBox(
         fit: BoxFit.none,
         alignment: Alignment(-1.5, -0.8),
         child: Container(
-          width: screenWidth,
+          width: screenHeight,
           height: screenHeight,
           decoration: BoxDecoration(
             color: Color.fromRGBO(0, 0, 0, 0.05),
