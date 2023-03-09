@@ -5,9 +5,15 @@ class UserModel {
   final String name;
   final String email;
   final String photoUrl;
-  List<Place> myPlaces;
-  List<Place> myFavoritePlaces;
+  final List<Place> myPlaces;
+  final List<Place> myFavoritePlaces;
 
-  UserModel(this.id, this.name, this.email, this.photoUrl, this.myPlaces, this.myFavoritePlaces);
-
+  UserModel({
+    this.id,
+    this.name,
+    this.email,
+    this.photoUrl,
+    this.myPlaces,
+    this.myFavoritePlaces
+  });
 }

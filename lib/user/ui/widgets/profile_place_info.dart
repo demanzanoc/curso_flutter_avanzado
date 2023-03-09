@@ -4,9 +4,9 @@ import '../../../widgets/floating_action_button_green.dart';
 
 class ProfilePlaceInfo extends StatelessWidget {
 
-  Place place;
+  final Place place;
 
-  ProfilePlaceInfo(this.place);
+  ProfilePlaceInfo({this.place});
 
   @override
   Widget build(BuildContext context) {
@@ -51,12 +51,12 @@ class ProfilePlaceInfo extends StatelessWidget {
     );
 
     final steps = Text(
-      'Heart ${this.place.likes}',
+      'Likes ${this.place.likes}',
       style: TextStyle(
           fontFamily: 'Lato',
           fontSize: 14.0,
           fontWeight: FontWeight.bold,
-          color: Colors.amber
+          color: Colors.blue
       ),
     );
 
@@ -90,7 +90,9 @@ class ProfilePlaceInfo extends StatelessWidget {
       alignment: Alignment(0.8, 1.25),
       children: <Widget>[
         card,
-        FloatingActionButtonGreen()
+        FloatingActionButtonGreen(
+          iconData: Icons.favorite_border,
+        )
       ],
     );
   }

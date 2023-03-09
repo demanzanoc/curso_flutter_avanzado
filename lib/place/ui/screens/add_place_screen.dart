@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:platzi_trips_app/place/ui/widgets/card_image_with_fab_icon.dart';
 import 'package:platzi_trips_app/place/ui/widgets/title_input_location.dart';
+import 'package:platzi_trips_app/widgets/button_purple.dart';
 import 'package:platzi_trips_app/widgets/gradient_back.dart';
 import '../../../widgets/text_input.dart';
 import '../../../widgets/title_header.dart';
@@ -55,14 +56,13 @@ class _AddPlaceScreen extends State {
             ],
           ),
           Container(
-            margin: EdgeInsets.only(top: 60.0, bottom: 20.0),
+            margin: EdgeInsets.only(top: 120.0, bottom: 20.0),
             child: ListView(
               children: [
                 Container(
                   alignment: Alignment.center,
                   child: CardImageWithFabIcon(
                     pathImage: "assets/img/mountain.jpeg",
-                    //widget.image.path,
                     iconData: Icons.camera_alt,
                     width: 350.0,
                     height: 250.0,
@@ -87,11 +87,19 @@ class _AddPlaceScreen extends State {
                 Container(
                   margin: EdgeInsets.only(top: 20.0),
                   child: TextInputLocation(
-                    "Add location",
-                    null,
-                    Icons.location_on_outlined,
+                    hintText: "Add location",
+                    iconData: Icons.location_on_outlined,
                   ),
                 ),
+                Container(
+                  width: 70.0,
+                  child: ButtonPurple(
+                    buttonText: "Add place",
+                    onPressed: () {
+
+                    },
+                  ),
+                )
               ],
             ),
           ),

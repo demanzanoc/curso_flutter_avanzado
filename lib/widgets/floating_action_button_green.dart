@@ -16,13 +16,12 @@ class _FloatingActionButtonGreen extends State<FloatingActionButtonGreen> {
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return FloatingActionButton(
       backgroundColor: Color(0xFF11DA53),
       mini: true,
       tooltip: "Fav",
       onPressed: widget.onPressed,
-      child: Icon(Icons.favorite_border),
+      child: Icon(widget.iconData),
       heroTag: null,
     );
   }

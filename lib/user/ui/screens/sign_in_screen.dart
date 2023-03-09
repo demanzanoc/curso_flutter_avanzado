@@ -64,19 +64,16 @@ class _SignInScreen extends State<SignInScreen> {
                   userBloc.signIn().then((user) {
                     userBloc.updateUserData(
                       UserModel(
-                        user.uid,
-                        user.displayName,
-                        user.email,
-                        user.photoURL,
-                        List.empty(),
-                        List.empty(),
-                      ),
+                          id: user.uid,
+                          name: user.displayName,
+                          email: user.email,
+                          photoUrl: user.photoURL),
                     );
                   });
                 },
                 width: 300.0,
                 height: 50.0,
-              )
+              ),
             ],
           ),
         ],

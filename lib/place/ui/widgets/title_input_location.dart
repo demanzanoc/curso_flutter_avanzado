@@ -5,7 +5,7 @@ class TextInputLocation extends StatelessWidget {
   final TextEditingController controller;
   final IconData iconData;
 
-  TextInputLocation(this.hintText, this.controller, this.iconData);
+  TextInputLocation({this.hintText, this.controller, this.iconData});
 
   @override
   Widget build(BuildContext context) {

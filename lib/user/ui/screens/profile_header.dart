@@ -42,20 +42,17 @@ class ProfileHeader extends StatelessWidget {
       );
     } else {
       user = UserModel(
-        snapshot.data.uid,
-        snapshot.data.displayName,
-        snapshot.data.email,
-        snapshot.data.photoURL,
-        List.empty(),
-        List.empty(),
-      );
+          id: snapshot.data.uid,
+          name: snapshot.data.displayName,
+          email: snapshot.data.email,
+          photoUrl: snapshot.data.photoURL);
       final title = Text(
         'Profile',
         style: TextStyle(
-            fontFamily: 'Lato',
-            color: Colors.white,
-            fontWeight: FontWeight.bold,
-            fontSize: 30.0,
+          fontFamily: 'Lato',
+          color: Colors.white,
+          fontWeight: FontWeight.bold,
+          fontSize: 30.0,
         ),
       );
       return Container(
