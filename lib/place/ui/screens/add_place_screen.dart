@@ -1,6 +1,5 @@
 import 'dart:io';
 
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:generic_bloc_provider/generic_bloc_provider.dart';
 import 'package:platzi_trips_app/place/ui/widgets/card_image_with_fab_icon.dart';
@@ -13,7 +12,7 @@ import '../../../widgets/title_header.dart';
 import '../../model/place.dart';
 
 class AddPlaceScreen extends StatefulWidget {
-  final File image;
+  final String image;
 
   AddPlaceScreen(this.image);
 
@@ -23,7 +22,7 @@ class AddPlaceScreen extends StatefulWidget {
   }
 }
 
-class _AddPlaceScreen extends State {
+class _AddPlaceScreen extends State<AddPlaceScreen> {
   @override
   Widget build(BuildContext context) {
     UserBloc userBloc = BlocProvider.of(context);
@@ -67,12 +66,13 @@ class _AddPlaceScreen extends State {
                 Container(
                   alignment: Alignment.center,
                   child: CardImageWithFabIcon(
-                    pathImage: "assets/img/mountain.jpeg",
+                    pathImage: widget.image,
                     iconData: Icons.camera_alt,
                     width: 350.0,
                     height: 250.0,
                     left: 0,
                     top: 20.0,
+                    isAsset: false,
                   ),
                 ),
                 Container(

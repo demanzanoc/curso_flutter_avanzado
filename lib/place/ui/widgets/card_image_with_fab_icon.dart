@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import '../../../widgets/floating_action_button_green.dart';
 
@@ -9,15 +11,17 @@ class CardImageWithFabIcon extends StatelessWidget {
   final VoidCallback onPressedFabIcon;
   final IconData iconData;
   final String pathImage;
+  final bool isAsset;
 
   CardImageWithFabIcon({
-    this.pathImage = "assets/img/beach.jpeg",
+    this.pathImage,
     this.width = 250.0,
     this.height = 350.0,
     this.onPressedFabIcon,
     this.iconData,
     this.left = 20.0,
-    this.top = 80.0
+    this.top = 80.0,
+    this.isAsset = true
   });
 
   @override
@@ -27,7 +31,10 @@ class CardImageWithFabIcon extends StatelessWidget {
       width: width,
       margin: EdgeInsets.only(top: top, left: left),
       decoration: BoxDecoration(
-        image: DecorationImage(fit: BoxFit.cover, image: AssetImage(pathImage)),
+        image: DecorationImage(
+            fit: BoxFit.cover,
+            image: isAsset? AssetImage(pathImage): FileImage(File(pathImage)),
+        ),
         borderRadius: BorderRadius.all(Radius.circular(10.0)),
         shape: BoxShape.rectangle,
         boxShadow: <BoxShadow>[
