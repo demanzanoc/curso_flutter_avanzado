@@ -4,6 +4,8 @@ import 'package:platzi_trips_app/user/model/user_model.dart';
 import 'package:platzi_trips_app/user/repository/auth_repository.dart';
 import 'package:platzi_trips_app/user/repository/cloud_firestore_repository.dart';
 
+import '../../place/model/place.dart';
+
 class UserBloc implements Bloc {
   final _auth_repository = AuthRepository();
   final _cloudFirestoreRepository = CloudFirestoreRepository();
@@ -18,8 +20,10 @@ class UserBloc implements Bloc {
 
   updateUserData(UserModel user) => _cloudFirestoreRepository.updateUserDataFirestore(user);
 
+  Future<void> updatePlaceDate(Place place) => _cloudFirestoreRepository.updatePlaceDate(place);
+
   @override
-  void dispose() {
+  dispose() {
     // TODO: implement dispose
   }
 }
