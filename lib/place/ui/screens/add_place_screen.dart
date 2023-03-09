@@ -31,7 +31,7 @@ class _AddPlaceScreen extends State {
           Row(
             children: [
               Container(
-                padding: EdgeInsets.only(top: 25.0, left: 5.0),
+                margin: EdgeInsets.only(top: 40.0, left: 5.0),
                 child: SizedBox(
                   height: 45.0,
                   width: 45.0,
@@ -49,7 +49,7 @@ class _AddPlaceScreen extends State {
               ),
               Flexible(
                 child: Container(
-                  padding: EdgeInsets.only(top: 60.0, left: 20.0, right: 10.0),
+                  margin: EdgeInsets.only(top: 60.0, left: 20.0, right: 10.0),
                   child: TitleHeader("Add a new place"),
                 ),
               ),
@@ -67,6 +67,7 @@ class _AddPlaceScreen extends State {
                     width: 350.0,
                     height: 250.0,
                     left: 0,
+                    top: 20.0,
                   ),
                 ),
                 Container(
@@ -95,9 +96,7 @@ class _AddPlaceScreen extends State {
                   width: 70.0,
                   child: ButtonPurple(
                     buttonText: "Add place",
-                    onPressed: () {
-
-                    },
+                    onPressed: () {},
                   ),
                 )
               ],
