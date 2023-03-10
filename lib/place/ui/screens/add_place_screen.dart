@@ -1,5 +1,7 @@
 import 'dart:io';
 
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:generic_bloc_provider/generic_bloc_provider.dart';
 import 'package:platzi_trips_app/place/ui/widgets/card_image_with_fab_icon.dart';
@@ -102,18 +104,35 @@ class _AddPlaceScreen extends State<AddPlaceScreen> {
                   child: ButtonPurple(
                     buttonText: "Add place",
                     onPressed: () {
-                      userBloc
-                          .updatePlaceDate(
-                            Place(
-                              name: _controllerTitlePlace.text,
-                              description: _controllerDescriptionPlace.text,
-                              likes: 0,
-                            ),
-                          )
-                          .whenComplete(() => {
+                      String path;
+                      userBloc.currentUser.then((User user) => {
+                        path = (user != null) ? "${user.uid}/${DateTime.now()
+                            .toString()}.jpg" : "",
+                        userBloc.uploadFile(path, File(widget.image))
+                            .then((UploadTask task) =>
+                        {
+                          task.then((snapshot) =>
+                          {
+                            snapshot.ref.getDownloadURL()
+                                .then((urlImage) =>
+                            {
+                              userBloc.updatePlaceDate(
+                                Place(
+                                  name: _controllerTitlePlace.text,
+                                  description: _controllerDescriptionPlace.text,
+                                  urlImage: urlImage,
+                                  likes: 0,
+                                ),
+                              ).whenComplete(() =>
+                              {
                                 print("TERMINO"),
                                 Navigator.pop(context),
-                              });
+                              },
+                              )},
+                            )},
+                          ),
+                        })
+                      });
                     },
                   ),
                 )
