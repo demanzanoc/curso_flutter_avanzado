@@ -67,7 +67,8 @@ class _SignInScreen extends State<SignInScreen> {
                           id: user.uid,
                           name: user.displayName,
                           email: user.email,
-                          photoUrl: user.photoURL),
+                          photoUrl: user.photoURL,
+                      ),
                     );
                   });
                 },

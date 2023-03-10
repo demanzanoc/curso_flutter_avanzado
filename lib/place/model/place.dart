@@ -1,4 +1,3 @@
-import '../../user/model/user_model.dart';
 
 class Place {
   final String id;
@@ -6,7 +5,6 @@ class Place {
   final String description;
   final String urlImage;
   final int likes;
-  final UserModel userOwner;
 
   Place({
     this.id,
@@ -14,6 +12,5 @@ class Place {
     this.description,
     this.urlImage,
     this.likes,
-    this.userOwner
   });
 }

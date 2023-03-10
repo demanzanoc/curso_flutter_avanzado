@@ -6,7 +6,7 @@ class UserInfo extends StatelessWidget {
 
   UserModel user;
 
-  UserInfo(this.user);
+  UserInfo({this.user});
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +26,9 @@ class UserInfo extends StatelessWidget {
           shape: BoxShape.circle,
           image: DecorationImage(
               fit: BoxFit.cover,
-              image: NetworkImage(user.photoUrl)
+              image: NetworkImage(
+                  user.photoUrl
+              )
           )
       ),
     );

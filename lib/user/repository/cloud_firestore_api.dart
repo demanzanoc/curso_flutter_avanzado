@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import '../../place/model/place.dart';
 import '../model/user_model.dart';
+import '../ui/widgets/profile_place.dart';
 
 class CloudFirestoreApi {
   final String USERS = "users";
@@ -26,9 +27,7 @@ class CloudFirestoreApi {
 
   Future<void> updatePlaceData(Place place) async {
     CollectionReference placesCollection = _database.collection(PLACES);
-
     String userId = await _auth.currentUser.uid;
-
     await placesCollection.add({
       'name': place.name,
       'description': place.description,
@@ -36,12 +35,22 @@ class CloudFirestoreApi {
       'urlImage': place.urlImage,
       'userOwner': _database.doc("$USERS/$userId"),
     }).then((document) => {
-      document.get().then((snapshot) => {
-        //snapshot.id;
-        _database.collection(USERS).doc(userId).update({
-          'myPlaces': FieldValue.arrayUnion([_database.doc("$PLACES/${snapshot.id}")])
-        })
-      })
-    });
+          document.get().then((snapshot) => {
+                _database.collection(USERS).doc(userId).update({
+                  'myPlaces': FieldValue.arrayUnion(
+                      [_database.doc("$PLACES/${snapshot.id}")])
+                })
+              })
+        });
   }
+
+  List<ProfilePlace> buildPlaces(List<DocumentSnapshot> placesListSnapshot) =>
+      placesListSnapshot.map((place) => ProfilePlace(
+            place: Place(
+              name: place['name'],
+              description: place['description'],
+              urlImage: place['urlImage'],
+              likes: place['likes'],
+            ),
+          )).toList();
 }

@@ -1,31 +1,39 @@
 import 'package:flutter/material.dart';
-import 'profile_place.dart';
-import '../../../place/model/place.dart';
+import 'package:generic_bloc_provider/generic_bloc_provider.dart';
+import 'package:platzi_trips_app/user/bloc/bloc_user.dart';
+import '../../model/user_model.dart';
 
 class ProfilePlacesList extends StatelessWidget {
-  Place place = Place(
-    id: '1',
-    name: 'Knuckles Mountains Range',
-    description: 'Hiking. Water fall hunting. Natural bath',
-    urlImage:
-        'https://astelus.com/wp-content/viajes/Lago-Moraine-Parque-Nacional-Banff-Alberta-Canada.jpg',
-    likes: 3,
-  );
+  UserBloc userBloc;
+  UserModel userModel;
 
-  Place place2 = Place(
-    id: '1',
-    name: 'Mountains',
-    description: 'Hiking. Water fall hunting. Natural bath',
-    urlImage:
-        'https://thumbs.dreamstime.com/b/paisajes-de-yosemite-46208063.jpg',
-    likes: 20,
-  );
+  ProfilePlacesList({this.userModel});
 
   @override
   Widget build(BuildContext context) {
+    userBloc = BlocProvider.of(context);
     return Container(
-      margin: EdgeInsets.only(top: 10.0, left: 20.0, right: 20.0, bottom: 10.0),
-      child: Column(
+        margin: EdgeInsets.only(
+          top: 10.0, left: 20.0, right: 20.0, bottom: 10.0,
+        ),
+        child: StreamBuilder(
+          stream: userBloc.myPlacesListStream(userModel.id),
+          builder: (context, AsyncSnapshot snapshot) {
+            switch (snapshot.connectionState) {
+              case ConnectionState.active:
+              case ConnectionState.done:
+                return Column(
+                  children: userBloc.buildPlaces(snapshot.data.docs)
+                );
+              case ConnectionState.none:
+              case ConnectionState.waiting:
+              default:
+                return CircularProgressIndicator();
+            }
+          },
+        )
+
+      /*Column(
         children: <Widget>[
           ProfilePlace(
             place: place,
@@ -34,7 +42,7 @@ class ProfilePlacesList extends StatelessWidget {
             place: place2,
           ),
         ],
-      ),
+      ),*/
     );
   }
 }
