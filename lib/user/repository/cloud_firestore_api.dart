@@ -55,11 +55,26 @@ class CloudFirestoreApi {
             ),
           )).toList();
 
-  List<CardImageWithFabIcon> buildPlaces(List<DocumentSnapshot> placesListSnapshot) =>
-      placesListSnapshot.map((place) =>
-          CardImageWithFabIcon(
-            pathImage: place["urlImage"],
-            isNetworkImage: true,
-          )).toList();
+  List<CardImageWithFabIcon> buildPlaces(List<DocumentSnapshot> placesList) =>
+      placesList.map((place) => CardImageWithFabIcon(
+        pathImage: place["urlImage"],
+        isNetworkImage: true,
+        onPressedFabIcon: () {
+          likePlace(place.id);
+        },
+      )).toList();
+
+  Future likePlace(String idPlace) async {
+    int likes = 0;
+    await _database.collection(PLACES).doc(idPlace).get().then(
+            (place) => {
+              likes = place['likes'],
+              _database.collection(PLACES).doc(idPlace).update({
+                'likes': likes+1
+              })
+
+            }
+    );
+  }
 
 }
