@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import '../../place/model/place.dart';
+import '../../place/ui/widgets/card_image_with_fab_icon.dart';
 import '../model/user_model.dart';
 import '../ui/widgets/profile_place.dart';
 
@@ -44,7 +45,7 @@ class CloudFirestoreApi {
         });
   }
 
-  List<ProfilePlace> buildPlaces(List<DocumentSnapshot> placesListSnapshot) =>
+  List<ProfilePlace> buildMyPlaces(List<DocumentSnapshot> placesListSnapshot) =>
       placesListSnapshot.map((place) => ProfilePlace(
             place: Place(
               name: place['name'],
@@ -53,4 +54,12 @@ class CloudFirestoreApi {
               likes: place['likes'],
             ),
           )).toList();
+
+  List<CardImageWithFabIcon> buildPlaces(List<DocumentSnapshot> placesListSnapshot) =>
+      placesListSnapshot.map((place) =>
+          CardImageWithFabIcon(
+            pathImage: place["urlImage"],
+            isNetworkImage: true,
+          )).toList();
+
 }

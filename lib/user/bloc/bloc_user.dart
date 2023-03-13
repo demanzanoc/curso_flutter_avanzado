@@ -9,8 +9,8 @@ import 'package:platzi_trips_app/user/model/user_model.dart';
 import 'package:platzi_trips_app/user/repository/auth_repository.dart';
 import 'package:platzi_trips_app/user/repository/cloud_firestore_api.dart';
 import 'package:platzi_trips_app/user/repository/cloud_firestore_repository.dart';
-
 import '../../place/model/place.dart';
+import '../../place/ui/widgets/card_image_with_fab_icon.dart';
 import '../ui/widgets/profile_place.dart';
 
 class UserBloc implements Bloc {
@@ -43,7 +43,10 @@ class UserBloc implements Bloc {
 
   Stream<QuerySnapshot> get placesStream => placesListStream;
 
-  List<ProfilePlace> buildPlaces(List<DocumentSnapshot> placesListSnapshot) =>
+  List<ProfilePlace> buildMyPlaces(List<DocumentSnapshot> placesListSnapshot) =>
+      _cloudFirestoreRepository.buildMyPlaces(placesListSnapshot);
+
+  List<CardImageWithFabIcon> buildPlaces(List<DocumentSnapshot> placesListSnapshot) =>
       _cloudFirestoreRepository.buildPlaces(placesListSnapshot);
 
   Stream<QuerySnapshot> myPlacesListStream(String uid) => FirebaseFirestore

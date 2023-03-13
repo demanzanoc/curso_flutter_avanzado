@@ -23,7 +23,7 @@ class ProfilePlacesList extends StatelessWidget {
               case ConnectionState.active:
               case ConnectionState.done:
                 return Column(
-                  children: userBloc.buildPlaces(snapshot.data.docs)
+                  children: userBloc.buildMyPlaces(snapshot.data.docs)
                 );
               case ConnectionState.none:
               case ConnectionState.waiting:

@@ -74,7 +74,6 @@ class _AddPlaceScreen extends State<AddPlaceScreen> {
                     height: 250.0,
                     left: 0,
                     top: 20.0,
-                    isAsset: false,
                   ),
                 ),
                 Container(
